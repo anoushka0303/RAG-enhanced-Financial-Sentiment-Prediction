@@ -2,8 +2,7 @@ import yfinance as yf
 import pandas as pd
 import os
 
-TICKERS = [
-    "AAPL",           
+TICKERS = [          
     "RELIANCE.NS",    
     "HDFCBANK.NS",    
     "BHARTIARTL.NS",  
