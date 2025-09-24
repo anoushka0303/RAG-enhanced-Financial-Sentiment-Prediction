@@ -3,19 +3,10 @@ import pandas as pd
 import os
 
 TICKERS = [          
-    "RELIANCE.NS",    
-    "HDFCBANK.NS",    
-    "BHARTIARTL.NS",  
-    "TCS.NS",         
-    "ICICIBANK.NS",   
-    "SBIN.NS",        
-    "HINDUNILVR.NS",  
-    "INFY.NS",        
-    "BAJFINANCE.NS",  
-    "LICI.NS"         
+    "RELIANCE.NS",            
 ]
 
-def fetch_yahoo_data(tickers, period="1y", interval="1d", save_path="../../data/raw/yfinance_data.xlsx"):
+def fetch_yahoo_data(tickers, period="10y", interval="1d", save_path="../../data/raw/yfinance_data_2.xlsx"):
     all_data = []
 
     for ticker in tickers:
@@ -29,7 +20,10 @@ def fetch_yahoo_data(tickers, period="1y", interval="1d", save_path="../../data/
         all_data.append(df)
 
     final_df = pd.concat(all_data, ignore_index=True)
-    final_df.to_excel(save_path, index=False)  
+    if not os.path.exists(os.path.dirname(save_path)):
+        os.makedirs(os.path.dirname(save_path))
+
+    final_df.to_excel(save_path, index=False)
     print(f"Saved yfinance data → {save_path}")
 
 if __name__ == "__main__":
